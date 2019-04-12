@@ -1,7 +1,6 @@
-package pl.coderslab.app.author;
+package pl.coderslab.app.person;
 
 import org.springframework.stereotype.Repository;
-import pl.coderslab.app.author.Author;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,29 +10,29 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class AuthorDao {
+public class PersonDao {
     @PersistenceContext
     EntityManager entityManager;
-    public void save(Author entity) {
+    public void save(Person entity) {
         entityManager.persist(entity);
     }
 
-    public void edit(Author entity){
+    public void edit(Person entity){
         entityManager.merge(entity);
     }
 
-    public Author findById(long id) {
-        return entityManager.find(Author.class, id);
+    public Person findById(long id) {
+        return entityManager.find(Person.class, id);
     }
 
-    //do weryfikacji:
-    public List<Author> findAll(Author entity){
-        Query query = entityManager.createQuery("SELECT a FROM " + Author.class + " a");
-        List<Author> authors = query.getResultList();
-        return authors;
+    public List<Person> findAll(Person entity){
+        Query query = entityManager.createQuery("SELECT a FROM " + Person.class + " a");
+        List<Person> persons = query.getResultList();
+        return persons;
     }
 
-    public void delete(Author entity) {
+
+    public void delete(Person entity) {
         entityManager.remove(entityManager.contains(entity) ?
                 entity : entityManager.merge(entity)); }
 }

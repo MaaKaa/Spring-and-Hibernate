@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.coderslab.app.author.Author;
+import pl.coderslab.app.publisher.Publisher;
 
 import java.math.BigDecimal;
 
@@ -18,9 +20,9 @@ public class BookController {
     @RequestMapping("/save")
     @ResponseBody
     public String create(@RequestParam(name="title") String title,
-                       @RequestParam(name="author") String author,
+                       @RequestParam(name="author") Author author,
                        @RequestParam(name="rating")BigDecimal rating,
-                       @RequestParam(name="publisher") String publisher,
+                       @RequestParam(name="publisher") Publisher publisher,
                        @RequestParam(name="description") String description){
         Book book = new Book();
         book.setTitle(title);
@@ -43,9 +45,9 @@ public class BookController {
     @ResponseBody
     public String update(@PathVariable(name="id") long id,
                        @RequestParam(name="title") String title,
-                       @RequestParam(name="author") String author,
+                       @RequestParam(name="author") Author author,
                        @RequestParam(name="rating")BigDecimal rating,
-                       @RequestParam(name="publisher") String publisher,
+                       @RequestParam(name="publisher") Publisher publisher,
                        @RequestParam(name="description") String description){
         Book book = bookDao.findById(id);
         book.setTitle(title);

@@ -8,12 +8,13 @@ public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
     public Publisher() {
     }
 
+    //Za pomocą atrybutu adnotacji OneToMany o nazwie mappedBy - wskazujemy nazwę pola, które odpowiada drugiej stronie relacji:
+    @OneToMany(mappedBy = "publisher")
     public void setId(Long id) {
         this.id = id;
     }
